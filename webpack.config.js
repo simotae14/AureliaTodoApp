@@ -34,7 +34,11 @@ module.exports = ({production, server, extractCss, coverage, analyze, karma} = {
   },
   entry: {
     app: ['aurelia-bootstrapper'],
-    vendor: ['bluebird'],
+    vendor: [
+      'bluebird',
+      'jquery',
+      'bootstrap'
+    ],
   },
   mode: production ? 'production' : 'development',
   output: {

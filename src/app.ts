@@ -1,4 +1,6 @@
 import { Todo } from './todo';
+import * as $ from 'jquery';
+import 'bootstrap/dist/js/bootstrap.bundle';
 
 export class App {
   // create the pties
