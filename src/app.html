@@ -3,26 +3,60 @@
   <require from="./main.css"></require>
   <div class="hero">
       <div class="container">
-        <h1 class="display-2 text-center">TodoList</h1>
-        <p class="lead text-center">Welcome to my todoList applications</p>
+        <h1 class="display-2 text-center">${heading}</h1>
+        <p class="lead text-center">${subHeading}</p>
         <div class="row">
-          <form id="form" class="col-lg-6 col-8 mx-auto">
+          <form
+            submit.trigger="addTodo()"
+            id="form"
+            class="col-lg-6 col-8 mx-auto"
+          >
             <div class="input-group">
-              <input id="input" class="form-control" placeholder="Enter todo list item">
+              <input
+                value.bind="newTodo"
+                id="input"
+                class="form-control"
+                placeholder="Enter todo list item"
+              >
               <span>
-                <button id="btn" type="button" class="btn btn-primary">Submit</button>
+                <button id="btn" type="submit" class="btn btn-primary">Add ToDo</button>
               </span>
             </div>
           </form>
         </div>
         <div class="row">
           <ul id="list" class="list col-lg-6 col-8 mx-auto">
-            <!-- <li>this is a todo item <input type="checkbox" class="checkbox"></li>
-            <li>this is a todo item <input type="checkbox" class="checkbox"></li> -->
+            <li repeat.for="todo of todos">
+                <span
+                  show.bind="!todo.edit"
+                  css="text-decoration:${todo.done ? 'line-through': 'none'}">${todo.description}</span> <input checked.bind="todo.done" type="checkbox" class="checkbox">
+                <input
+                  show.bind="todo.edit"
+                  value.bind="todo.description"
+                  type="text"
+                >
+                <button
+                  click.trigger="todo.edit=!todo.edit"
+                  class="btn btn-success"
+                >
+                  ${!todo.edit ? 'Update' : 'Done' }
+                </button>
+                <button
+                  click.trigger="removeTodo(todo)"
+                  class="btn btn-danger"
+                >
+                  Delete
+                </button>
+            </li>
           </ul>
         </div>
         <div class="row">
-          <button id="btnClr" type="button" class="btn btn-primary mx-auto btnHide">Clear</button>
+          <button
+            click.trigger="removeTodos()"
+            id="btnClr"
+            type="button"
+            class="btn btn-primary mx-auto btnHide"
+          >Clear</button>
         </div>
       </div>
     </div>

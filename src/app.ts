@@ -4,7 +4,8 @@ import 'bootstrap/dist/js/bootstrap.bundle';
 
 export class App {
   // create the pties
-  heading = 'My Tasks';
+  heading = 'TodoList';
+  subHeading = 'Welcome to my todoList applications';
   newTodo = '';
   todos : Todo[] = [];
 
@@ -16,10 +17,13 @@ export class App {
       this.newTodo = '';
     }
   }
-  removetodo(todo) {
+  removeTodo(todo) {
     let index = this.todos.indexOf(todo);
     if (index !== -1) {
       this.todos.splice(index, 1);
     }
+  }
+  removeTodos() {
+    this.todos = [];
   }
 }
